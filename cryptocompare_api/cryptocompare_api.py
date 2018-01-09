@@ -5,18 +5,16 @@
 #	Email: 					Ericlam2012@live.com 
 #	Python Ver:			 	Python 3 + Anaconda 
 
-import json
+# import json
 import requests
 import sys
 
-def data_get(url, link):
+def data_get(url):
 	# (For example) url = "https://min-api.cryptocompare.com/" + 'listCoins'
-	url_path = url + link
-
 	try:
-		resp = requests.get(url_path, timeout=2)
+		resp = requests.get(url, timeout=2)
 		print(resp.raise_for_status())
-		json_data = resp.json()		
+		json_data = resp.json()
 	except requests.exceptions.HTTPError as http_err:
 		print('HTTP Error: ', http_err)
 		sys.exit(1)
@@ -30,12 +28,28 @@ def data_get(url, link):
 	except requests.exceptions.RequestException as err:
 		print("Error: ", err)
 		sys.exit(1)
- 	
+
+	return json_data
+	
+
+# def url_build():
+
+
+
+
+def coin_list():
+	# url_path = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR"
+	url_path = "https://www.cryptocompare.com/api/data/coinlist"
+	json_data = data_get(url_path)
 	return json_data
 
 
-cc_charts_path = "https://min-api.cryptocompare.com/"
-json_data = data_get(cc_charts_path,'')
+
+
+# cc_charts_path = "https://min-api.cryptocompare.com/"
+# json_data = data_get(cc_charts_path,'')
+json_data = coin_list()
+
 
 print(json_data)
 
