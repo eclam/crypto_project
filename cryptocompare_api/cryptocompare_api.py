@@ -29,10 +29,6 @@ def data_get(url):
 
 	return json_data
 
-# def url_build():
-
-
-
 def coin_list(coins='all'):
 	url_path = "https://min-api.cryptocompare.com/data/all/coinlist"
 
@@ -44,5 +40,6 @@ def coin_list(coins='all'):
 
 	return text_data
 
+# def url_build():
 
 
