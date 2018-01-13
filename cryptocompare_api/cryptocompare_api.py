@@ -45,21 +45,39 @@ def build_url(funct, **kwargs):
 	if funct == 'coinlist':
 		url_root = 'all/coinlist'
 	else:
-		url_root = []
+		url_root = funct + '?'
 
 		keys_data = kwargs.keys()
 		for key, value in keys_data:
-			print(json.dumps(kwargs[key]),key)
-
-
+			if key == 'fsym':
+				url_root.append('fsym={}'.format(value))
+			elif key == 'fsyms':
+				url_root.append('fsyms={}'.format( ','.join(value) ))
+			elif key == 'tsym':
+				url_root.append('tsym={}'.format(value))
+			elif key == 'tsyms':
+				url_root.append('tsyms={}'.format( ','.join(value) ))
+			elif key == 'e' && value != 'all':
+				url_root.append('e={}'.format(value))
+			elif key == 'try_conversion' and not value:
+				url_root.append('tryConversion=false')
+			elif key == 'markets' && value != 'all':
+				url_root.append('&markets={}'.format(','.join(value)))
+			elif key == 'avgType' and value != 'HourVWAP':
+				url_root.append('avgType={}'.format(value))
+			elif key == 'UTCHourDiff' and value != 0:
+				url_root.append('UTCHourDiff={}'.format(value))
+			elif key == 'ts':
+				url_root.append('ts={}'.format(value))
+			elif key == 'aggregate' and value != 1:
+				url_root.append('aggregate={}'.format(value))
+			elif key == 'limit' and value != 1440:
+				url_root.append('limit={}'.format(value))
 
 
 	# url_path =  url_base + url_root
-	url_path = ''
+	url_path = url_base + url_root
 	return url_path
-
-
-
 
 def coin_snapshot(fsym, tsym):
 	url = build_url('coinsnapshot',fsym=fsym, tsym=tsym)
