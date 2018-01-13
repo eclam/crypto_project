@@ -30,16 +30,63 @@ def data_get(url):
 	return json_data
 
 def coin_list(coins='all'):
-	url_path = "https://min-api.cryptocompare.com/data/all/coinlist"
+	url_path = build_url('coinlist')
 
 	if coins != 'all': #finds selected cryptocurrencies from the json_data 
 		text_data = data_get(url_path)['Data']
-		text_data = {c: text_data[c] for c in coins}
+		sel_data = {c: text_data[c] for c in coins}
 	else:
-		text_data = data_get(url_path)['Data']
+		sel_data = data_get(url_path)['Data']
 
-	return text_data
+	return sel_data
 
-# def url_build():
+def build_url(funct, **kwargs):
+	url_base = "https://min-api.cryptocompare.com/data/"
+	if funct == 'coinlist':
+		url_root = 'all/coinlist'
+	else:
+		url_root = []
+
+		keys_data = kwargs.keys()
+		for key, value in keys_data:
+			print(json.dumps(kwargs[key]),key)
 
 
+
+
+	# url_path =  url_base + url_root
+	url_path = ''
+	return url_path
+
+
+
+
+def coin_snapshot(fsym, tsym):
+	url = build_url('coinsnapshot',fsym=fsym, tsym=tsym)
+	json_data = data_get(url)['Data']
+
+	return json_data
+
+# def price(fsym, tsyms, e): #e = exchange 
+
+# def price_multi(fsyms, tsyms, e) #e = exchange 
+
+# def price_multifull(fsyms, tsysms, e)
+
+# def gen_coinavg(fsym, tsym, markets)
+
+# def day_avg(fsym, tsym, e, toTs) #toTs = time stamp, avgType = Hour VWAP, tryconversion = get values w/o using conversion 
+
+# def historical_price(fsym, tsyms, ts, markets)
+
+# def coin_snapshot_ID(id)
+
+# def social_stats(id)
+
+# def histo_min(fsym, tsym, limit, aggregate, toTs, tryConversion, e)
+
+# def histo_hour(fysm, tsym, limit, aggregate, toTs, tryConversion, e)
+
+# def histo_day(fysm, tsym, limit, aggregate, toTs, tryConversion, e)
+
+# def top_pairs(fsym, tsym, limit)

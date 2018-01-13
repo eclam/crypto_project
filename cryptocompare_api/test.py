@@ -1,10 +1,16 @@
-from cryptocompare_api import coin_list, data_get
+# from cryptocompare_api import coin_list, data_get, build_url
+from cryptocompare_api import *
 import json
 
-# cc_charts_path = "https://min-api.cryptocompare.com/"
-# json_data = data_get_cc(cc_charts_path,'')
 
-text_data = coin_list( coins='all' ) #feed list of wanted coins through coins = []
+# print( build_url('price') )
+# print( build_url('coinlist'))
+
+# text_data = coin_list( coins='all' ) #feed list of wanted coins through coins = []
+
+print(coin_snapshot("LTC","CAD"))
+
+
 # for key, value in text_data.items():
 # 	print(key, value)
 # 	count+=1
@@ -13,7 +19,9 @@ text_data = coin_list( coins='all' ) #feed list of wanted coins through coins = 
 # print(json_data)
 
 # print(json.dumps(text_data))
-keys_data = text_data.keys() # takes all the keys from said library 
+# keys_data = text_data.keys() # takes all the keys from said library 
+
+# print( list(text_data.keys())[:20] ) #prints the first few keys
 
 # for key in keys_data:
 	# print(json.dumps(text_data[key]),key)
@@ -26,6 +34,10 @@ keys_data = text_data.keys() # takes all the keys from said library
 
 #############################################################
 #might need this code in future? 
+
+# cc_charts_path = "https://min-api.cryptocompare.com/"
+# json_data = data_get_cc(cc_charts_path,'')
+
 # def data_get_cc(url):
 # 	# (For example) url = "https://min-api.cryptocompare.com/" + 'listCoins'
 # 	try:
