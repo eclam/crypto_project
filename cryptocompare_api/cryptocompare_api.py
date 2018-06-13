@@ -57,11 +57,11 @@ def build_url(funct, **kwargs):
 				url_root.append('tsym={}'.format(value))
 			elif key == 'tsyms':
 				url_root.append('tsyms={}'.format( ','.join(value) ))
-			elif key == 'e' && value != 'all':
+			elif key == 'e' and value != 'all':
 				url_root.append('e={}'.format(value))
 			elif key == 'try_conversion' and not value:
 				url_root.append('tryConversion=false')
-			elif key == 'markets' && value != 'all':
+			elif key == 'markets' and value != 'all':
 				url_root.append('&markets={}'.format(','.join(value)))
 			elif key == 'avgType' and value != 'HourVWAP':
 				url_root.append('avgType={}'.format(value))
